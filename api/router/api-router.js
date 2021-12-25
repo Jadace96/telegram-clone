@@ -5,12 +5,27 @@ const express = require('express');
 const apiRouter = express.Router();
 
 const requestCallback = (req, res) => {
-  console.log('BODY: ', req.body);
-  const reqData = {
-    path: req.path,
-    method: req.method,
-  };
-  res.send(`Request info: ${JSON.stringify(reqData)}`);
+  // res.header({ 'My-Custom-header': 'This is my custom header' });
+  // console.log('HEADERS: ', req.headers);
+
+  // console.log('BODY: ', req.body);
+
+  // console.log('QUERY: ', req.query);
+
+  // const reqData = {
+  //   path: req.path,
+  //   method: req.method,
+  // };
+  // res.send(`Request info: ${JSON.stringify(reqData)}`);
+
+  // empty response
+  // res.status(201).send();
+
+  // flat response
+  // res.status(201).send('Flat response');
+
+  // with data and structured
+  res.status(201).send([{ error: '', status: 'ok', statusCode: '201' }]);
 };
 
 apiRouter.all('/api', requestCallback);

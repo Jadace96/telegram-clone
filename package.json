@@ -1,0 +1,24 @@
+{
+  "name": "telegram-clone",
+  "version": "1.0.0",
+  "description": "Telegram clone",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "open": "^8.4.0"
+  },
+  "keywords": [
+    "chat",
+    "server",
+    "telegram"
+  ],
+  "author": "Jorge Daniel",
+  "license": "MIT"
+}

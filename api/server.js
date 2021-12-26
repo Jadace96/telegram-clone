@@ -7,12 +7,12 @@ const { injectMiddlewares } = require('./utils');
 // constants
 const { devEnv } = require('./constants');
 
-const app = express(); // to initialize express
+const server = express(); // to initialize express
 
 const onServerMounted = () => {
   console.log(`Listening on ${devEnv.localhost}`);
 };
 
-app.use('/api', express.static('api/public'));
-injectMiddlewares(app);
-app.listen(devEnv.port, onServerMounted);
+injectMiddlewares(server);
+server.use('/api', express.static('api/public'));
+server.listen(devEnv.port, onServerMounted);

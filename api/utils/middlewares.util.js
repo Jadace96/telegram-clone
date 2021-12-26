@@ -1,17 +1,17 @@
 // vendors
 const express = require('express');
 
-// router
-const { apiRouter } = require('../router');
+// routes
+const { rootRoutes } = require('../network');
 
 const options = [
   express.json(), // to parse body sended as JSON
   express.urlencoded({ extended: false }), // to parse body sended as urlencoded
-  apiRouter,
 ];
 
-const injectMiddlewares = (app) => {
-  options.map((option) => app.use(option));
+const injectMiddlewares = (server) => {
+  options.forEach((option) => server.use(option));
+  rootRoutes(server);
 };
 
 module.exports = {

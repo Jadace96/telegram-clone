@@ -34,6 +34,8 @@ const requestCallback = (req, res) => {
     res,
     statusCode: 400,
     message: `An error has occurred on ${req.path}`,
+    details:
+      'Details about the error that should not be shown to the client for security, but should be shown to us in the terminal.',
   };
   if (req.query.error === 'ok') {
     response.error(responseParams);
@@ -45,7 +47,6 @@ const requestCallback = (req, res) => {
   }
 };
 
-apiRouter.all('/api', requestCallback);
 apiRouter.get('/api/message', requestCallback);
 apiRouter.post('/api/message', requestCallback);
 apiRouter.delete('/api/message', requestCallback);

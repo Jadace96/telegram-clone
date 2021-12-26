@@ -13,5 +13,6 @@ const onServerMounted = () => {
   console.log(`Listening on ${devEnv.localhost}`);
 };
 
+app.use('/api', express.static('api/public'));
 injectMiddlewares(app);
 app.listen(devEnv.port, onServerMounted);

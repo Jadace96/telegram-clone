@@ -1,7 +1,2 @@
-const response = require('./response.network');
-const rootRoutes = require('./root-routes.network');
-
-module.exports = {
-  response,
-  rootRoutes,
-};
+exports.response = require('./response.network');
+exports.rootRoutes = require('./root-routes.network');

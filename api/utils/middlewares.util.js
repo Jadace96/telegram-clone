@@ -9,11 +9,8 @@ const options = [
   express.urlencoded({ extended: false }), // to parse body sended as urlencoded
 ];
 
-const injectMiddlewares = (server) => {
+exports.injectMiddlewares = (server) => {
   options.forEach((option) => server.use(option));
+  server.use('/api', express.static('../public'));
   rootRoutes(server);
-};
-
-module.exports = {
-  injectMiddlewares,
 };

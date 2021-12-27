@@ -14,5 +14,4 @@ const onServerMounted = () => {
 };
 
 injectMiddlewares(server);
-server.use('/api', express.static('api/public'));
 server.listen(devEnv.port, onServerMounted);

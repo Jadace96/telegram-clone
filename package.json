@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Telegram clone",
   "main": "api/server.js",
+  "type": "module",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon --es-module-specifier-resolution=node api/server.js"
   },
   "dependencies": {
     "body-parser": "^1.19.1",

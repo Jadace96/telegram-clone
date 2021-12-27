@@ -1,9 +1,3 @@
-const numberUtil = require('./number.util');
-const { injectMiddlewares } = require('./middlewares.util');
-const { openLocalhostInChrome } = require('./browser.util');
-
-module.exports = {
-  ...numberUtil,
-  injectMiddlewares,
-  openLocalhostInChrome,
-};
+export * as number from './number.util';
+export { injectMiddlewares } from './middlewares.util';
+export { openLocalhostInChrome } from './browser.util';

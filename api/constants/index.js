@@ -1,5 +1,1 @@
-const devEnv = require('./dev-env.constant');
-
-module.exports = {
-  devEnv,
-};
+export * as devEnv from './dev-env.constant';

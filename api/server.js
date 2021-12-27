@@ -1,11 +1,11 @@
 // vendors
-const express = require('express');
+import express from 'express';
 
 // utils
-const { injectMiddlewares } = require('./utils');
+import { injectMiddlewares } from './utils';
 
 // constants
-const { devEnv } = require('./constants');
+import { devEnv } from './constants';
 
 const server = express(); // to initialize express
 

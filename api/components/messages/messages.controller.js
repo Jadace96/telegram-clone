@@ -1,12 +1,12 @@
 // utils
-const { getRandomNumber } = require('../../utils/number.util');
+import { number } from '../../utils';
 
-function addMessage({ user, message }) {
+export const addMessage = ({ user, message }) => {
   const fullMessageData = {
     user,
     message,
     date: new Date(),
-    id: getRandomNumber(),
+    id: number.getRandom(),
   };
 
   return new Promise((resolve, reject) => {
@@ -21,8 +21,4 @@ function addMessage({ user, message }) {
       resolve(fullMessageData);
     }
   });
-}
-
-module.exports = {
-  addMessage,
 };

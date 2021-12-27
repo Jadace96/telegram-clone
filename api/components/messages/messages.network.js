@@ -1,14 +1,14 @@
 // vendors
-const express = require('express');
+import express from 'express';
 
-// network
-const { response } = require('../../network');
+// networks
+import { response } from '../../network';
 
-// controller
-const { addMessage } = require('./messages.controller');
+// controllers
+import { addMessage } from './messages.controller';
 
 // constants
-const router = express.Router();
+const messagesRouter = express.Router();
 
 const onPostMessage = (req, res) => {
   const responseParams = {
@@ -31,6 +31,6 @@ const onPostMessage = (req, res) => {
     });
 };
 
-router.post('/api/message', onPostMessage);
+messagesRouter.post('/api/message', onPostMessage);
 
-module.exports = router;
+export { messagesRouter };

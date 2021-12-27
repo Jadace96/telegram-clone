@@ -1,16 +1,22 @@
 // vendors
-const express = require('express');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
 
 // routes
-const { rootRoutes } = require('../network');
+import { registerAppRoutes } from '../network';
+
+// constants
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const publicFolderPath = path.join(__dirname, '../public');
 
 const options = [
   express.json(), // to parse body sended as JSON
   express.urlencoded({ extended: false }), // to parse body sended as urlencoded
 ];
 
-exports.injectMiddlewares = (server) => {
+export const injectMiddlewares = (server) => {
   options.forEach((option) => server.use(option));
-  server.use('/api', express.static('../public'));
-  rootRoutes(server);
+  server.use('/api', express.static(publicFolderPath));
+  registerAppRoutes(server);
 };

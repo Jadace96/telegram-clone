@@ -1,14 +1,10 @@
 // vendors
-const open = require('open');
+import open from 'open';
 
 // constants
-const { devEnv } = require('../constants');
+import { devEnv } from '../constants';
 
-const openLocalhostInChrome = async () =>
+export const openLocalhostInChrome = async () =>
   await open(devEnv.localhost, {
     app: { name: open.apps.chrome },
   });
-
-module.exports = {
-  openLocalhostInChrome,
-};

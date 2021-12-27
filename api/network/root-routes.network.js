@@ -1,9 +1,8 @@
-const { messagesRouter } = require('../components/messages');
+// routes
+import { messagesRouter } from '../components/messages';
 
-const routes = [messagesRouter];
+const appRoutes = [messagesRouter];
 
-const rootRoutes = (server) => {
-  routes.forEach((route) => server.use(route));
+export const registerAppRoutes = (server) => {
+  appRoutes.forEach((route) => server.use(route));
 };
-
-module.exports = rootRoutes;

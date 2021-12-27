@@ -1,5 +1,1 @@
-const messagesRouter = require('./messages.network');
-
-module.exports = {
-  messagesRouter,
-};
+export { messagesRouter } from './messages.network';

@@ -1,2 +1,2 @@
-exports.response = require('./response.network');
-exports.rootRoutes = require('./root-routes.network');
+export * as response from './response.network';
+export { registerAppRoutes } from './root-routes.network';

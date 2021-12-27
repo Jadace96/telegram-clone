@@ -4,30 +4,33 @@ const express = require('express');
 // network
 const { response } = require('../../network');
 
-// constants
-const messagesRouter = express.Router();
+// controller
+const { addMessage } = require('./messages.controller');
 
-const requestCallback = (req, res) => {
+// constants
+const router = express.Router();
+
+const onPostMessage = (req, res) => {
   const responseParams = {
     req,
     res,
     statusCode: 400,
-    message: `An error has occurred on ${req.path}`,
-    details:
-      'Details about the error that should not be shown to the client for security, but should be shown to us in the terminal.',
+    details: 'Controller error',
+    message: 'Invalid information',
   };
-  if (req.query.error === 'ok') {
-    response.error(responseParams);
-  } else {
-    responseParams.statusCode = 201;
-    responseParams.message = `Successful Request on ${req.path}`;
 
-    response.success(responseParams);
-  }
+  addMessage(req.body)
+    .then((data) => {
+      responseParams.statusCode = 201;
+      responseParams.data = { ...data };
+
+      response.success(responseParams);
+    })
+    .catch(() => {
+      response.error(responseParams);
+    });
 };
 
-messagesRouter.get('/api/message', requestCallback);
-messagesRouter.post('/api/message', requestCallback);
-messagesRouter.delete('/api/message', requestCallback);
+router.post('/api/message', onPostMessage);
 
-module.exports = messagesRouter;
+module.exports = router;

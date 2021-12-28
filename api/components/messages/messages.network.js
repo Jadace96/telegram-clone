@@ -5,9 +5,10 @@ import express from 'express';
 import { response } from '../../network';
 
 // controllers
-import { addMessage } from './messages.controller';
+import { addMessage, getMessages } from './messages.controller';
 
 // constants
+const BASE_PATH = '/api/message';
 const messagesRouter = express.Router();
 
 const onPostMessage = (req, res) => {
@@ -31,6 +32,13 @@ const onPostMessage = (req, res) => {
     });
 };
 
-messagesRouter.post('/api/message', onPostMessage);
+const onGetMessages = (_, res) => {
+  getMessages()
+    .then((messageList) => response.success({ res, data: messageList }))
+    .catch((error) => response.error({ res, details: error }));
+};
+
+messagesRouter.get(BASE_PATH, onGetMessages);
+messagesRouter.post(BASE_PATH, onPostMessage);
 
 export { messagesRouter };

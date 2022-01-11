@@ -2,9 +2,9 @@
 import open from 'open';
 
 // constants
-import { devEnv } from '../constants';
+import { config } from '../config';
 
 export const openLocalhostInChrome = async () =>
-  await open(devEnv.localhost, {
+  await open(config.localhost, {
     app: { name: open.apps.chrome },
   });

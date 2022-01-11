@@ -1,7 +1,8 @@
 // vendors
 import path from 'path';
-import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 import express from 'express';
+import { fileURLToPath } from 'url';
 
 // routes
 import { registerAppRoutes } from '../network';
@@ -16,6 +17,7 @@ const options = [
 ];
 
 export const injectMiddlewares = (server) => {
+  dotenv.config({ path: path.join(__dirname, '../.env') });
   options.forEach((option) => server.use(option));
   server.use('/api', express.static(publicFolderPath));
   registerAppRoutes(server);

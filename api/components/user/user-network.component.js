@@ -5,10 +5,15 @@ import express from 'express';
 import { response } from '../../network';
 
 // controllers
-import { getUser, createNewUser } from './user-controller.component';
+import {
+  getUser,
+  updateUser,
+  deleteUser,
+  createNewUser,
+} from './user-controller.component';
 
 // constants
-const BASE_PATH = '/api/user';
+const BASE_PATH = '/api/v1/user';
 const userRouter = express.Router();
 
 const onPostUser = async (req, res) => {
@@ -36,13 +41,45 @@ const onGetUser = async (req, res) => {
   const { error, data } = await getUser(req?.query?.id);
 
   if (error) {
-    response.error({ res, details: error });
+    response.error({ res, details: error, message: error });
+  } else if (data) {
+    response.success({ res, data });
+  }
+};
+
+const onPutUser = async (req, res) => {
+  const { error, data } = await updateUser(req?.query?.id, req.body);
+  const responseParams = {
+    req,
+    res,
+    statusCode: 400,
+    message: error?.message || 'Invalid information',
+    details: error?.message ? `Filed to update user: ', ${error.message}` : '',
+  };
+
+  if (error) {
+    response.error(responseParams);
+  } else if (data) {
+    responseParams.statusCode = 201;
+    responseParams.data = { ...data };
+
+    response.success(responseParams);
+  }
+};
+
+const onDeleteUser = async (req, res) => {
+  const { error, data } = await deleteUser(req?.query?.id);
+
+  if (error) {
+    response.error({ res, details: error, message: error });
   } else if (data) {
     response.success({ res, data });
   }
 };
 
 userRouter.get(BASE_PATH, onGetUser);
+userRouter.put(BASE_PATH, onPutUser);
 userRouter.post(BASE_PATH, onPostUser);
+userRouter.delete(BASE_PATH, onDeleteUser);
 
 export { userRouter };

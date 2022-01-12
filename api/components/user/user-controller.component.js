@@ -1,21 +1,34 @@
-// vendors
-import Parse from 'parse/node';
+// utils
+import { parse } from '../../utils';
 
-export const createNewUser = async (newUserData) => {
-  const users = new Parse.Object('Users');
+const className = 'Users';
 
-  return await users.save({ ...newUserData }, { useMasterKey: true }).then(
-    (data) => ({ data }),
-    (error) => ({ error })
-  );
-};
+export const createNewUser = async (newUserData) =>
+  await parse.createObject(className, newUserData, { useMasterKey: true });
 
 export const getUser = async (userId) => {
-  const Users = new Parse.Object('Users');
-  const users = new Parse.Query(Users);
+  const objectId = await parse.getObjectId(className, 'userId', userId);
 
-  return users.get(userId, { useMasterKey: true }).then(
-    (data) => ({ data }),
-    (error) => ({ error })
-  );
+  return await parse.getData(className, objectId, { useMasterKey: true });
+};
+
+export const updateUser = async (userId, dataToUpdate) => {
+  const objectId = await parse.getObjectId(className, 'userId', userId);
+
+  const updateDataParams = {
+    objectId,
+    className,
+    dataToUpdate,
+    options: {
+      useMasterKey: true,
+    },
+  };
+
+  return await parse.updateData(updateDataParams);
+};
+
+export const deleteUser = async (userId) => {
+  const objectId = await parse.getObjectId(className, 'userId', userId);
+
+  return await parse.deleteObject(objectId, className);
 };

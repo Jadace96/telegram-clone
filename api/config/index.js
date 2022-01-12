@@ -8,4 +8,4 @@ export const config = {
   isDev: process.env.NODE_ENV !== 'PROD',
 };
 
-config.localhost = process.env.HOST || `http://localhost:${config.port}/api`;
+config.localhost = process.env.HOST || `http://localhost:${config.port}/api/v1`;

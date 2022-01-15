@@ -24,6 +24,7 @@ const onPostUser = async (req, res) => {
     message: 'Invalid information',
   };
 
+  console.log("REQ BODY: ", req.body);
   const { error, data } = await createNewUser(req.body);
 
   if (error) {
@@ -31,7 +32,7 @@ const onPostUser = async (req, res) => {
     response.error(responseParams);
   } else if (data) {
     responseParams.statusCode = 201;
-    responseParams.data = { ...data };
+    responseParams.data = { ...req.body };
 
     response.success(responseParams);
   }

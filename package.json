@@ -5,7 +5,7 @@
   "main": "api/server.js",
   "type": "module",
   "scripts": {
-    "start:prod": "NODE_ENV=PROD node api/server.js",
+    "start:prod": "cross-env NODE_ENV=PROD node --es-module-specifier-resolution=node api/server.js",
     "start": "nodemon --es-module-specifier-resolution=node api/server.js"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "parse": "^3.4.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15",
     "open": "^8.4.0"
   },

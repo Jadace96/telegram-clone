@@ -1,8 +1,7 @@
 // routes
 import { userRouter } from '../components/user';
-import { messagesRouter } from '../components/messages';
 
-const appRoutes = [userRouter, messagesRouter];
+const appRoutes = [userRouter];
 
 export const registerAppRoutes = (server) => {
   appRoutes.forEach((route) => server.use(route));

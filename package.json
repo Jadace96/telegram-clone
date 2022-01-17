@@ -5,8 +5,9 @@
   "main": "api/index.js",
   "type": "module",
   "scripts": {
-    "start:prod": "cross-env NODE_ENV=PROD node --es-module-specifier-resolution=node api/index.js",
-    "start": "nodemon --es-module-specifier-resolution=node api/index.js"
+    "start": "cross-env NODE_ENV=PROD node --es-module-specifier-resolution=node api/index.js",
+    "start:dev": "nodemon --es-module-specifier-resolution=node api/index.js",
+    "deploy": "heroku logs --tail"
   },
   "dependencies": {
     "cors": "^2.8.5",

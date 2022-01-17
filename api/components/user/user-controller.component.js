@@ -11,24 +11,3 @@ export const getUser = async (userId) => {
 
   return await parse.getData(className, objectId, { useMasterKey: true });
 };
-
-export const updateUser = async (userId, dataToUpdate) => {
-  const objectId = await parse.getObjectId(className, 'userId', userId);
-
-  const updateDataParams = {
-    objectId,
-    className,
-    dataToUpdate,
-    options: {
-      useMasterKey: true,
-    },
-  };
-
-  return await parse.updateData(updateDataParams);
-};
-
-export const deleteUser = async (userId) => {
-  const objectId = await parse.getObjectId(className, 'userId', userId);
-
-  return await parse.deleteObject(objectId, className);
-};

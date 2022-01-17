@@ -2,11 +2,11 @@
   "name": "telegram-clone",
   "version": "1.0.0",
   "description": "Telegram clone",
-  "main": "api/server.js",
+  "main": "api/index.js",
   "type": "module",
   "scripts": {
-    "start:prod": "cross-env NODE_ENV=PROD node --es-module-specifier-resolution=node api/server.js",
-    "start": "nodemon --es-module-specifier-resolution=node api/server.js"
+    "start:prod": "cross-env NODE_ENV=PROD node --es-module-specifier-resolution=node api/index.js",
+    "start": "nodemon --es-module-specifier-resolution=node api/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

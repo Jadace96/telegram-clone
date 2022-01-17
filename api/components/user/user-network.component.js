@@ -1,34 +1,27 @@
 // vendors
 import express from 'express';
 
-// networks
-import { response } from '../../network';
-
-// controllers
-import { createNewUser } from './user-controller.component';
+// utils
+import { parse } from '../../utils';
 
 // constants
 const BASE_PATH = '/api/v1/user';
 const userRouter = express.Router();
 
 const onPostUser = async (req, res) => {
-  const responseParams = {
-    req,
-    res,
-    statusCode: 400,
-    message: 'Invalid information',
-  };
-
-  const { error, data } = await createNewUser(req.body);
+  const { error, data } = await parse.createObject('Employees', req.body, {
+    useMasterKey: true,
+  });
 
   if (error) {
-    responseParams.details = `Filed to create new user: ', ${error.message}`;
-    response.error(responseParams);
+    console.error(
+      '\x1b[31m',
+      '[RESPONSE ERROR]:',
+      `Filed to create new user: ', ${error.message}`
+    );
+    res.status(statusCode).send({ error: message });
   } else if (data) {
-    responseParams.statusCode = 201;
-    responseParams.data = { ...req.body };
-
-    response.success(responseParams);
+    res.status(201).send({ isSuccess: true, data: { ...req.body } });
   }
 };
 

@@ -1,7 +1,7 @@
 // utils
 import { parse } from '../../utils';
 
-const className = 'Users';
+const className = 'Employees';
 
 export const createNewUser = async (newUserData) =>
   await parse.createObject(className, newUserData, { useMasterKey: true });

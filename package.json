@@ -5,16 +5,18 @@
   "main": "api/server.js",
   "type": "module",
   "scripts": {
-    "start:prod": "NODE_ENV=PROD node api/server.js",
+    "start:prod": "cross-env NODE_ENV=PROD node --es-module-specifier-resolution=node api/server.js",
     "start": "nodemon --es-module-specifier-resolution=node api/server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "mongodb": "^4.2.2",
     "parse": "^3.4.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15",
     "open": "^8.4.0"
   },

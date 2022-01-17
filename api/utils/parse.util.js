@@ -15,10 +15,14 @@ export const getObjectId = async (className, filterBy, filterValue) => {
 export const createObject = async (className, dataToSave, options) => {
   const newObject = new Parse.Object(className);
 
-  return await newObject.save({ ...dataToSave }, { ...options }).then(
-    (data) => ({ data }),
-    (error) => ({ error })
-  );
+  try {
+    const data = await newObject.save({ ...dataToSave }, { ...options });
+    console.log('Object created', data);
+    return { data };
+  } catch (error) {
+    console.error('Error while creating Object: ', error);
+    return { error };
+  }
 };
 
 export const getData = async (className, objectId, options) => {

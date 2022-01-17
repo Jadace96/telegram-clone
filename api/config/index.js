@@ -1,6 +1,6 @@
 export const config = {
   cors: process.env.CORS,
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 8080,
   serverUrl: process.env.SERVER_URL,
   javascriptKey: process.env.JS_KEY,
   applicationId: process.env.APP_ID,

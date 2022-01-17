@@ -1,27 +1,21 @@
 // vendors
 import express from 'express';
-
-// utils
-import { parse } from '../../utils';
+import Parse from 'parse/node';
 
 // constants
 const BASE_PATH = '/api/v1/user';
 const userRouter = express.Router();
 
 const onPostUser = async (req, res) => {
-  const { error, data } = await parse.createObject('Employees', req.body, {
-    useMasterKey: true,
-  });
+  const newObject = new Parse.Object(className);
 
-  if (error) {
-    console.error(
-      '\x1b[31m',
-      '[RESPONSE ERROR]:',
-      `Filed to create new user: ', ${error.message}`
-    );
-    res.status(statusCode).send({ error: message });
-  } else if (data) {
+  try {
+    const data = await newObject.save({ ...dataToSave }, { ...options });
+    console.log('Object created', data);
     res.status(201).send({ isSuccess: true, data: { ...req.body } });
+  } catch (error) {
+    console.error('Error while creating Object: ', error);
+    res.status(statusCode).send({ error: message });
   }
 };
 

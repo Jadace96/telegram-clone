@@ -5,12 +5,7 @@ import express from 'express';
 import { response } from '../../network';
 
 // controllers
-import {
-  getUser,
-  updateUser,
-  deleteUser,
-  createNewUser,
-} from './user-controller.component';
+import { createNewUser } from './user-controller.component';
 
 // constants
 const BASE_PATH = '/api/v1/user';
@@ -24,7 +19,6 @@ const onPostUser = async (req, res) => {
     message: 'Invalid information',
   };
 
-  console.log('REQ BODY: ', req.body);
   const { error, data } = await createNewUser(req.body);
 
   if (error) {
@@ -38,17 +32,6 @@ const onPostUser = async (req, res) => {
   }
 };
 
-const onGetUser = async (req, res) => {
-  const { error, data } = await getUser(req?.query?.id);
-
-  if (error) {
-    response.error({ res, details: error, message: error });
-  } else if (data) {
-    response.success({ res, data });
-  }
-};
-
-userRouter.get(BASE_PATH, onGetUser);
 userRouter.post(BASE_PATH, onPostUser);
 
 export { userRouter };
